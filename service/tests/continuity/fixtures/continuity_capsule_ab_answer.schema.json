@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "answers": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "question_id": {
+            "type": "string",
+            "enum": [
+              "facts",
+              "judgment",
+              "relationship",
+              "unknown_boundary",
+              "change",
+              "action"
+            ]
+          },
+          "known": {
+            "type": "boolean"
+          },
+          "answer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "confidence": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "question_id",
+          "known",
+          "answer",
+          "confidence",
+          "evidence_refs"
+        ]
+      }
+    }
+  },
+  "required": ["answers"]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "project": {"type": "string"},
+    "goal": {"type": "string"},
+    "architecture_decision": {"type": "string"},
+    "architecture_reason": {"type": "string"},
+    "collaboration_preference": {"type": "string"},
+    "current_task": {"type": "string"},
+    "verified_status": {"type": "string"},
+    "next_action": {"type": "string"},
+    "first_cloud_provider": {"type": "string"},
+    "first_cloud_provider_known": {"type": "boolean"},
+    "deleted_claim_asserted": {"type": "boolean"},
+    "secret_repeated": {"type": "boolean"}
+  },
+  "required": [
+    "project",
+    "goal",
+    "architecture_decision",
+    "architecture_reason",
+    "collaboration_preference",
+    "current_task",
+    "verified_status",
+    "next_action",
+    "first_cloud_provider",
+    "first_cloud_provider_known",
+    "deleted_claim_asserted",
+    "secret_repeated"
+  ]
+}

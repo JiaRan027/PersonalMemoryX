@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "personalmemory"
+version = "0.2.10"
+description = "User-owned, cross-agent personal memory infrastructure"
+readme = "README.md"
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+dependencies = [
+  "alembic>=1.14,<2",
+  "fastapi>=0.115,<1",
+  "httpx>=0.28,<1",
+  "pydantic>=2.10,<3",
+  "pydantic-settings>=2.7,<3",
+  "sqlalchemy>=2.0,<3",
+  "uvicorn[standard]>=0.32,<1",
+  "watchfiles>=1.0,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx>=0.28,<1",
+  "hypothesis>=6.120,<7",
+  "pytest>=8.3,<9",
+  "pytest-asyncio>=0.25,<1",
+  "ruff>=0.9,<1",
+]
+build = [
+  "pyinstaller>=6.16,<7",
+]
+
+[project.scripts]
+personalmemory-service = "personalmemory.main:run"
+personalmemory-mcp = "personalmemory.agent_mcp:main"
+
+[tool.setuptools]
+package-dir = {"" = "service/src"}
+
+[tool.setuptools.packages.find]
+where = ["service/src"]
+
+[tool.pytest.ini_options]
+testpaths = ["service/tests"]
+pythonpath = ["."]
+addopts = "--strict-markers"
+asyncio_mode = "auto"
+filterwarnings = [
+  "ignore:Using `httpx` with `starlette.testclient` is deprecated:starlette.exceptions.StarletteDeprecationWarning",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

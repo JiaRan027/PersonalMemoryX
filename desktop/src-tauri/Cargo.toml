@@ -1,0 +1,37 @@
+[package]
+name = "personalmemory-desktop"
+version = "0.2.10"
+description = "PersonalMemory Windows desktop shell"
+license = "AGPL-3.0-or-later"
+edition = "2024"
+
+[lib]
+name = "personalmemory_desktop"
+path = "src/lib.rs"
+
+[[bin]]
+name = "personalmemory-desktop"
+path = "src/main.rs"
+
+[dependencies]
+base64 = "0.22"
+rand = "0.9"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-autostart = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-single-instance = "2"
+tauri-plugin-updater = "=2.13.2"
+thiserror = "2"
+reqwest = { version = "0.13", default-features = false }
+semver = "1"
+toml_edit = "0.22"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dev-dependencies]
+minisign-verify = "0.2.5"
+tempfile = "3"

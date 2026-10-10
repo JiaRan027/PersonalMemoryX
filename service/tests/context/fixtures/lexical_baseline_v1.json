@@ -1,0 +1,76 @@
+{
+  "fixture_version": "lexical-baseline/1",
+  "memories": [
+    {
+      "id": "memory_goal",
+      "type": "goal",
+      "statement": "打造个人 AI 记忆基础设施，让用户跨 AI 平台携带自己的长期经验资产。",
+      "reason": "这是 PersonalMemory 的长期产品目标。",
+      "namespace": "projects/personalmemory"
+    },
+    {
+      "id": "memory_preference",
+      "type": "preference",
+      "statement": "喜欢详细、工程化、能落地验证的分析与协作方式。",
+      "reason": "项目 review 与开发协作中持续体现的偏好。",
+      "namespace": "general"
+    },
+    {
+      "id": "memory_decision_self_hosted",
+      "type": "decision",
+      "statement": "PersonalMemory 采用自部署优先路线，而不是以 SaaS 为默认形态。",
+      "reason": "保护用户数据主权与可迁移性。",
+      "namespace": "projects/personalmemory"
+    },
+    {
+      "id": "memory_insight_core",
+      "type": "insight",
+      "statement": "Memory 系统的核心不是保存聊天，而是保存可迁移的经验、决策和认知。",
+      "reason": "聊天记录只是来源，不是长期资产本身。",
+      "namespace": "projects/personalmemory"
+    },
+    {
+      "id": "memory_decision_validation",
+      "type": "decision",
+      "statement": "当前暂停商业化和宽泛架构扩展。",
+      "reason": "先验证 Context 交付质量，再扩大产品范围。",
+      "namespace": "projects/personalmemory"
+    },
+    {
+      "id": "memory_event_vector",
+      "type": "event",
+      "statement": "纯向量检索难以表达明确决策和原因。",
+      "reason": "此前的方案评估暴露了可解释性不足。",
+      "namespace": "projects/personalmemory"
+    },
+    {
+      "id": "memory_decision_other_project",
+      "type": "decision",
+      "statement": "另一个项目采用 SaaS 交付。",
+      "reason": "该项目没有本地数据主权要求。",
+      "namespace": "projects/other"
+    },
+    {
+      "id": "memory_sensitive_health",
+      "type": "fact",
+      "statement": "用户有高血压诊断。",
+      "reason": "医疗信息仅用于敏感度边界测试。",
+      "namespace": "general",
+      "sensitivity": "sensitive"
+    }
+  ],
+  "cases": [
+    {"id": "project-positioning", "query": "我正在开发什么项目，它的定位是什么？", "namespaces": ["projects/personalmemory", "general"], "expected": ["memory_goal"]},
+    {"id": "architecture-direction", "query": "这个项目当前的架构取向是什么？", "namespaces": ["projects/personalmemory"], "expected": ["memory_decision_self_hosted"]},
+    {"id": "collaboration-preference", "query": "我偏好的协作方式是什么？", "namespaces": ["general"], "expected": ["memory_preference"]},
+    {"id": "decision-why", "query": "为什么 PersonalMemory 选择自部署优先？", "namespaces": ["projects/personalmemory"], "expected": ["memory_decision_self_hosted"]},
+    {"id": "core-insight", "query": "Memory 系统最核心的认知是什么？", "namespaces": ["projects/personalmemory"], "expected": ["memory_insight_core"]},
+    {"id": "past-experience", "query": "纯向量检索方案以前暴露过什么问题？", "namespaces": ["projects/personalmemory"], "expected": ["memory_event_vector"]},
+    {"id": "long-term-goal", "query": "我的长期产品目标是什么？", "namespaces": ["projects/personalmemory"], "expected": ["memory_goal"]},
+    {"id": "saas-boundary", "query": "PersonalMemory 默认要做成 SaaS 吗？", "namespaces": ["projects/personalmemory"], "expected": ["memory_decision_self_hosted"]},
+    {"id": "experience-assets", "query": "这个系统应该保存聊天还是保存经验资产？", "namespaces": ["projects/personalmemory"], "expected": ["memory_insight_core"]},
+    {"id": "unknown-database", "query": "PersonalMemory 最终选定了哪一种数据库？", "namespaces": ["projects/personalmemory"], "expected": []},
+    {"id": "namespace-isolation", "query": "另一个项目采用什么交付路线？", "namespaces": ["projects/other"], "expected": ["memory_decision_other_project"]},
+    {"id": "sensitive-boundary", "query": "用户有什么医疗诊断？", "namespaces": ["general"], "expected": []}
+  ]
+}

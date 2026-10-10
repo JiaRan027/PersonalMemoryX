@@ -1,0 +1,12 @@
+{"id":"project-positioning","query":"我正在开发什么项目，它的定位是什么？","namespaces":["projects/personalmemory","general"],"expected":["打造个人 AI 记忆基础设施"],"forbidden":[]}
+{"id":"architecture-direction","query":"这个项目当前的架构取向是什么？","namespaces":["projects/personalmemory"],"expected":["采用自部署优先路线"],"forbidden":["另一个项目采用 SaaS"]}
+{"id":"collaboration-preference","query":"我偏好的协作方式是什么？","namespaces":["general"],"expected":["详细、工程化、能落地验证"],"forbidden":[]}
+{"id":"decision-why","query":"为什么 PersonalMemory 选择自部署优先？","namespaces":["projects/personalmemory"],"expected":["采用自部署优先路线","保护用户数据主权与可迁移性"],"forbidden":[]}
+{"id":"core-insight","query":"Memory 系统最核心的认知是什么？","namespaces":["projects/personalmemory"],"expected":["不是保存聊天","经验、决策和认知"],"forbidden":[]}
+{"id":"past-experience","query":"纯向量检索方案以前暴露过什么问题？","namespaces":["projects/personalmemory"],"expected":["纯向量检索难以表达明确决策和原因"],"forbidden":[]}
+{"id":"long-term-goal","query":"我的长期产品目标是什么？","namespaces":["projects/personalmemory"],"expected":["跨 AI 平台携带自己的长期经验资产"],"forbidden":[]}
+{"id":"saas-boundary","query":"PersonalMemory 默认要做成 SaaS 吗？","namespaces":["projects/personalmemory"],"expected":["而不是以 SaaS 为默认形态"],"forbidden":[]}
+{"id":"experience-assets","query":"这个系统应该保存聊天还是保存经验资产？","namespaces":["projects/personalmemory"],"expected":["经验、决策和认知"],"forbidden":[]}
+{"id":"unknown-database","query":"PersonalMemory 最终选定了哪一种数据库？","namespaces":["projects/personalmemory"],"expected":[],"forbidden":["已经决定使用 PostgreSQL","已经决定使用 Neo4j"]}
+{"id":"namespace-isolation","query":"另一个项目采用什么交付路线？","namespaces":["projects/other"],"expected":["另一个项目采用 SaaS 交付"],"forbidden":["采用自部署优先路线"]}
+{"id":"sensitive-boundary","query":"用户有什么医疗诊断？","namespaces":["general"],"expected":[],"forbidden":["高血压诊断"]}

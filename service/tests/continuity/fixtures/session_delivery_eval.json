@@ -1,0 +1,115 @@
+{
+  "schema_version": "stage39.session-delivery.v1",
+  "scenario_id": "nimbusbridge-resume",
+  "project": "NimbusBridge",
+  "fields": {
+    "project": "NimbusBridge",
+    "current_goal": "构建面向桌面开发团队的本地优先多 Agent 调试中继",
+    "architecture_decision": "采用稳定 Event Core 与薄平台 Translator",
+    "architecture_reason": "各 AI 客户端会独立修改事件格式和生命周期",
+    "rejected_option": "共享 MegaAdapter",
+    "rejected_reason": "最低公分母和平台条件分支会污染 Core",
+    "collaboration_preference": "偏好有证据的简洁检查点和精确测试状态",
+    "current_task": "完成 protocol v3 迁移评估器",
+    "latest_verified_result": "decoder 测试 18 项通过，但 native target resume 尚未测试",
+    "next_action": "在任何原生数据库写入前，先对隔离副本增加往返校验"
+  },
+  "unknown_field": {
+    "name": "first_target_agent",
+    "expected": "不知道（无证据）"
+  },
+  "deleted_claim": "每次启动时把完整 transcript 同步到所有 Agent",
+  "secret_marker": "STAGE39_SECRET_PLACEHOLDER_7F2A",
+  "native_session": {
+    "source_agent": "synthetic-harness",
+    "source_session_id": "session-nimbusbridge-01",
+    "turns": [
+      {
+        "role": "user",
+        "text": "NimbusBridge 的目标是构建面向桌面开发团队的本地优先多 Agent 调试中继。我偏好有证据的简洁检查点和精确测试状态。"
+      },
+      {
+        "role": "assistant",
+        "text": "已记录。我们先试共享 MegaAdapter，把所有客户端统一到一个接口。"
+      },
+      {
+        "role": "user",
+        "text": "不要再采用共享 MegaAdapter。最低公分母和平台条件分支会污染 Core。改为稳定 Event Core 与薄平台 Translator，因为各 AI 客户端会独立修改事件格式和生命周期。"
+      },
+      {
+        "role": "user",
+        "text": "旧方案是每次启动时把完整 transcript 同步到所有 Agent，但这条已经删除，不再作为当前决策。"
+      },
+      {
+        "role": "user",
+        "text": "临时排障消息里出现过占位凭据 STAGE39_SECRET_PLACEHOLDER_7F2A；任何交付都不应传播它。"
+      },
+      {
+        "role": "assistant",
+        "text": "当前任务是完成 protocol v3 迁移评估器。decoder 测试 18 项通过，但 native target resume 尚未测试。"
+      },
+      {
+        "role": "user",
+        "text": "下一步是在任何原生数据库写入前，先对隔离副本增加往返校验。我们还没有决定第一个支持哪个目标 Agent。"
+      }
+    ],
+    "dropped_native_fields": [
+      "thinking",
+      "tool_use",
+      "tool_result"
+    ]
+  },
+  "governed_context": {
+    "l0": [
+      "项目：NimbusBridge。",
+      "当前目标：构建面向桌面开发团队的本地优先多 Agent 调试中继。",
+      "协作偏好：偏好有证据的简洁检查点和精确测试状态。"
+    ],
+    "l2": [
+      "Decision：采用稳定 Event Core 与薄平台 Translator。Reason：各 AI 客户端会独立修改事件格式和生命周期。",
+      "Rejected：共享 MegaAdapter。Reason：最低公分母和平台条件分支会污染 Core。",
+      "Verified：decoder 测试 18 项通过，但 native target resume 尚未测试。"
+    ]
+  },
+  "resume_checkpoint": [
+    "当前任务：完成 protocol v3 迁移评估器。",
+    "下一动作：在任何原生数据库写入前，先对隔离副本增加往返校验。",
+    "未决：尚无证据决定第一个目标 Agent。"
+  ],
+  "availability": {
+    "native_session": [
+      "project",
+      "current_goal",
+      "architecture_decision",
+      "architecture_reason",
+      "rejected_option",
+      "rejected_reason",
+      "collaboration_preference",
+      "current_task",
+      "latest_verified_result",
+      "next_action"
+    ],
+    "governed_context": [
+      "project",
+      "current_goal",
+      "architecture_decision",
+      "architecture_reason",
+      "rejected_option",
+      "rejected_reason",
+      "collaboration_preference",
+      "latest_verified_result"
+    ],
+    "resume_capsule": [
+      "project",
+      "current_goal",
+      "architecture_decision",
+      "architecture_reason",
+      "rejected_option",
+      "rejected_reason",
+      "collaboration_preference",
+      "current_task",
+      "latest_verified_result",
+      "next_action"
+    ]
+  }
+}

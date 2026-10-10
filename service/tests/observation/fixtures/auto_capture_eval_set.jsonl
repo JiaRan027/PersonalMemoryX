@@ -1,0 +1,11 @@
+{"id":"zh_goal","user":"我的目标是打造用户拥有的跨 AI 连续性基础设施。","assistant":"我会按这个目标继续。","expected_types":["goal"]}
+{"id":"zh_decision","user":"我决定采用 SQLite，因为本地自部署更简单。","assistant":"已记录这个决定。","expected_types":["decision"]}
+{"id":"zh_preference","user":"我喜欢详细的工程化分析。","assistant":"明白。","expected_types":["preference"]}
+{"id":"zh_skill","user":"我熟悉 Python 和 SQLite。","assistant":"明白。","expected_types":["skill"]}
+{"id":"zh_insight","user":"我意识到保存连续性比保存聊天更重要。","assistant":"这是一个重要洞察。","expected_types":["insight"]}
+{"id":"zh_event","user":"我完成了 Context Compiler 的真实验收。","assistant":"验收已经完成。","expected_types":["event"]}
+{"id":"zh_fact","user":"我的项目是 PersonalMemory。","assistant":"明白。","expected_types":["fact"]}
+{"id":"en_decision","user":"I decided to keep the core model-neutral.","assistant":"Understood.","expected_types":["decision"]}
+{"id":"question","user":"请比较 SQLite 和向量数据库。","assistant":"我决定采用向量数据库。","expected_types":[]}
+{"id":"temporary_command","user":"请运行一次测试然后告诉我结果。","assistant":"我完成了全部测试。","expected_types":[]}
+{"id":"assistant_suggestion","user":"你建议下一步做什么？","assistant":"我喜欢先开发 Cursor Hook。","expected_types":[]}

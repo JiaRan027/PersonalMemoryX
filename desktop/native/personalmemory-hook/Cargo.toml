@@ -1,0 +1,21 @@
+[package]
+name = "personalmemory-hook"
+version = "0.2.10"
+description = "Fail-open native Agent Hook boundary for PersonalMemory"
+edition = "2024"
+license = "AGPL-3.0-or-later"
+publish = false
+
+[dependencies]
+serde_json = "1"
+sha2 = "0.10"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

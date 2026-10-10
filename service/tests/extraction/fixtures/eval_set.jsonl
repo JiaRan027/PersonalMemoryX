@@ -1,0 +1,50 @@
+{"id": "fact-01", "text": "我是后端工程师，主要做 Python 服务端。", "expected_type": "fact", "expected_statement_substr": ["后端工程师"]}
+{"id": "fact-02", "text": "我住在上海。", "expected_type": "fact", "expected_statement_substr": ["上海"]}
+{"id": "fact-03", "text": "我在一家做 AI 应用的创业公司工作。", "expected_type": "fact", "expected_statement_substr": ["AI 应用"]}
+{"id": "fact-04", "text": "我的专业是计算机科学。", "expected_type": "fact", "expected_statement_substr": ["计算机科学"]}
+{"id": "fact-05", "text": "I use Rust for systems programming.", "expected_type": "fact", "expected_statement_substr": ["Rust"]}
+{"id": "fact-06", "text": "我的项目是个人记忆基础设施。", "expected_type": "fact", "expected_statement_substr": ["个人记忆"]}
+{"id": "goal-01", "text": "我的目标是在一年内进入人工智能行业。", "expected_type": "goal", "expected_statement_substr": ["人工智能行业"]}
+{"id": "goal-02", "text": "我计划年底前完成 PersonalMemory v0.2。", "expected_type": "goal", "expected_statement_substr": ["PersonalMemory v0.2"]}
+{"id": "goal-03", "text": "我打算学习 Rust 和 Tauri。", "expected_type": "goal", "expected_statement_substr": ["Rust 和 Tauri"]}
+{"id": "goal-04", "text": "我的愿望是做一个开源项目。", "expected_type": "goal", "expected_statement_substr": ["开源项目"]}
+{"id": "goal-05", "text": "I am planning to release an open source SDK.", "expected_type": "goal", "expected_statement_substr": ["open source SDK"]}
+{"id": "goal-06", "text": "我的计划是先跑通评估集再写 LLM Adapter。", "expected_type": "goal", "expected_statement_substr": ["评估集"]}
+{"id": "skill-01", "text": "我会 Python，熟悉 FastAPI 和 SQLAlchemy。", "expected_type": "skill", "expected_statement_substr": ["Python"]}
+{"id": "skill-02", "text": "我能独立完成前后端开发。", "expected_type": "skill", "expected_statement_substr": ["前后端开发"]}
+{"id": "skill-03", "text": "我掌握 SQLite 和 FTS5。", "expected_type": "skill", "expected_statement_substr": ["SQLite"]}
+{"id": "skill-04", "text": "我用过 Kubernetes 部署服务。", "expected_type": "skill", "expected_statement_substr": ["Kubernetes"]}
+{"id": "skill-05", "text": "I can write TypeScript applications.", "expected_type": "skill", "expected_statement_substr": ["TypeScript"]}
+{"id": "skill-06", "text": "我熟悉 Linux 运维。", "expected_type": "skill", "expected_statement_substr": ["Linux"]}
+{"id": "pref-01", "text": "我喜欢详细的技术解释。", "expected_type": "preference", "expected_statement_substr": ["详细的技术解释"]}
+{"id": "pref-02", "text": "我偏好本地优先的工具。", "expected_type": "preference", "expected_statement_substr": ["本地优先"]}
+{"id": "pref-03", "text": "我更愿意自部署而不是用托管服务。", "expected_type": "preference", "expected_statement_substr": ["自部署"]}
+{"id": "pref-04", "text": "我习惯用 VS Code 写代码。", "expected_type": "preference", "expected_statement_substr": ["VS Code"]}
+{"id": "pref-05", "text": "I prefer markdown over word documents.", "expected_type": "preference", "expected_statement_substr": ["markdown"]}
+{"id": "pref-06", "text": "我不喜欢复杂的配置流程。", "expected_type": "preference", "expected_statement_substr": ["复杂的配置流程"]}
+{"id": "event-01", "text": "我完成了 Windows v0.1 的实机验收。", "expected_type": "event", "expected_statement_substr": ["Windows v0.1"]}
+{"id": "event-02", "text": "我做过一次数据库迁移，从 SQLite 换到 Postgres。", "expected_type": "event", "expected_statement_substr": ["数据库迁移"]}
+{"id": "event-03", "text": "我参加了 2026 年的 AI 开发者大会。", "expected_type": "event", "expected_statement_substr": ["AI 开发者大会"]}
+{"id": "event-04", "text": "我开发过一个托盘自动化的验证脚本。", "expected_type": "event", "expected_statement_substr": ["托盘自动化"]}
+{"id": "event-05", "text": "I built a local memory service last month.", "expected_type": "event", "expected_statement_substr": ["local memory service"]}
+{"id": "event-06", "text": "我踩过一个通知中心自动化定位的坑。", "expected_type": "event", "expected_statement_substr": ["通知中心"]}
+{"id": "insight-01", "text": "我发现个人记忆必须独立于任何单一模型。", "expected_type": "insight", "expected_statement_substr": ["独立于任何单一模型"]}
+{"id": "insight-02", "text": "我意识到不能完全依赖 Agent 主动写入长期记忆。", "expected_type": "insight", "expected_statement_substr": ["不能完全依赖"]}
+{"id": "insight-03", "text": "我总结出：模型只能输出候选，不能直接决定记忆。", "expected_type": "insight", "expected_statement_substr": ["模型只能输出候选"]}
+{"id": "insight-04", "text": "我认识到冲突处理必须优先于模型分数。", "expected_type": "insight", "expected_statement_substr": ["冲突处理"]}
+{"id": "insight-05", "text": "I realized that user-owned data requires open formats.", "expected_type": "insight", "expected_statement_substr": ["open formats"]}
+{"id": "insight-06", "text": "我悟出自动化体验的关键是减少人工确认。", "expected_type": "insight", "expected_statement_substr": ["减少人工确认"]}
+{"id": "decision-01", "text": "我决定优先做结构化查询，因为大量个人记忆属于明确事实。", "expected_type": "decision", "expected_statement_substr": ["结构化查询"], "expected_reason_substr": ["明确事实"]}
+{"id": "decision-02", "text": "我选择自部署优先，原因是用户数据主权最重要。", "expected_type": "decision", "expected_statement_substr": ["自部署优先"], "expected_reason_substr": ["数据主权"]}
+{"id": "decision-03", "text": "我放弃用纯向量数据库，因为删除和回环语义更难保证。", "expected_type": "decision", "expected_statement_substr": ["纯向量数据库"], "expected_reason_substr": ["删除和回环"]}
+{"id": "decision-04", "text": "我采用了 WAL 模式，由于需要并发读写。", "expected_type": "decision", "expected_statement_substr": ["WAL 模式"], "expected_reason_substr": ["并发读写"]}
+{"id": "decision-05", "text": "I decided to keep the memory core model-agnostic because platforms change.", "expected_type": "decision", "expected_statement_substr": ["model-agnostic"], "expected_reason_substr": ["platforms change"]}
+{"id": "decision-06", "text": "我选择了 SQLite 作为首版存储，理由是本地优先且零运维。", "expected_type": "decision", "expected_statement_substr": ["SQLite"], "expected_reason_substr": ["本地优先"]}
+{"id": "neg-01", "text": "你好，今天天气怎么样？", "expected_type": "none"}
+{"id": "neg-02", "text": "你能帮我总结一下这份文档吗？", "expected_type": "none"}
+{"id": "neg-03", "text": "请告诉我如何优化这段代码。", "expected_type": "none"}
+{"id": "neg-04", "text": "为什么向量数据库不适合这里？", "expected_type": "none"}
+{"id": "neg-05", "text": "What is the best way to design a memory system?", "expected_type": "none"}
+{"id": "neg-06", "text": "Can you recommend a database for me?", "expected_type": "none"}
+{"id": "neg-07", "text": "哈哈，随便聊聊。", "expected_type": "none"}
+{"id": "neg-08", "text": "今天的重点是交付。", "expected_type": "none"}

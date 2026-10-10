@@ -1,0 +1,22 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", "Microsoft YaHei UI", sans-serif;
+  font-synthesis: none;
+  --surface: #ffffff;
+  --surface-subtle: #f6f7f8;
+  --surface-muted: #eef1f3;
+  --border: #dce1e5;
+  --border-strong: #c3cbd1;
+  --text: #172026;
+  --text-muted: #60707b;
+  --brand: #176b57;
+  --brand-soft: #e5f3ef;
+  --warning: #9a5d00;
+  --warning-soft: #fff4d6;
+  --danger: #a63737;
+  --danger-soft: #fdecec;
+  --focus: #1d6fb8;
+  --sidebar-width: 224px;
+  --radius: 6px;
+  --shadow: 0 8px 24px rgb(23 32 38 / 8%);
+}

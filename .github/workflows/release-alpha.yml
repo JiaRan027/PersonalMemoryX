@@ -1,0 +1,95 @@
+name: Signed Windows Alpha Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish-alpha:
+    if: github.ref == 'refs/heads/main'
+    runs-on: windows-latest
+    env:
+      PM_RELEASE_NOTES: |
+        PersonalMemory 0.2.10 Alpha — Windows x64.
+
+        This is a local-first continuity layer for AI agents, not a transcript archive. See README.md for installation, data handling, and verified limitations.
+
+        The installer is not Authenticode-signed. The updater signature is not a Windows publisher identity. End-to-end update installation and rollback are not yet validated.
+    environment:
+      name: release-signing
+    steps:
+      - name: Check out reviewed main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: desktop/package-lock.json
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - name: Install locked build tooling
+        shell: pwsh
+        run: |
+          python -m pip install uv==0.11.1
+          $env:UV_PROJECT_ENVIRONMENT = '.alpha-build-venv'
+          uv sync --locked --extra dev --extra build --python 3.12
+          npm --prefix desktop ci
+
+      - name: Run verification suite
+        shell: pwsh
+        run: |
+          $env:UV_PROJECT_ENVIRONMENT = '.alpha-build-venv'
+          .\.alpha-build-venv\Scripts\python.exe -m pytest -q
+          .\.alpha-build-venv\Scripts\ruff.exe check service
+          npm --prefix desktop run typecheck
+          npm --prefix desktop run test:unit -- --run
+
+      - name: Build sidecars from Visual Studio REDIST
+        shell: pwsh
+        run: |
+          $env:UV_PROJECT_ENVIRONMENT = '.alpha-build-venv'
+          .\scripts\build-sidecar.ps1 -Python .\.alpha-build-venv\Scripts\python.exe
+          .\.alpha-build-venv\Scripts\python.exe scripts\generate-third-party-notices.py
+
+      - name: Build and sign NSIS installer
+        shell: pwsh
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        run: |
+          if (-not $env:TAURI_SIGNING_PRIVATE_KEY) { throw 'The protected signing key secret is not configured.' }
+          .\scripts\rust-env.ps1
+          Push-Location desktop
+          try { npm run tauri:build; if ($LASTEXITCODE -ne 0) { throw 'Tauri build failed' } }
+          finally { Pop-Location }
+
+      - name: Verify signatures and prepare release feed
+        shell: pwsh
+        run: |
+          .\scripts\prepare-release-assets.ps1 -Channel alpha `
+            -ReleaseNotes $env:PM_RELEASE_NOTES `
+            -OutputDirectory "$env:RUNNER_TEMP\pm-release-assets"
+
+      - name: Publish the protected Alpha channel
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: alpha-channel
+          target_commitish: main
+          name: PersonalMemory Alpha 0.2.10
+          body: ${{ env.PM_RELEASE_NOTES }}
+          draft: false
+          prerelease: true
+          make_latest: false
+          overwrite_files: true
+          fail_on_unmatched_files: true
+          files: ${{ runner.temp }}/pm-release-assets/*

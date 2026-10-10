@@ -1,0 +1,1 @@
+"""PersonalMemory domain model."""

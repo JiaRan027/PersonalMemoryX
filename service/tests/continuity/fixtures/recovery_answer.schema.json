@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "project": {"type": "string"},
+    "current_goal": {"type": "string"},
+    "architecture_decision": {"type": "string"},
+    "architecture_reason": {"type": "string"},
+    "rejected_option": {"type": "string"},
+    "rejected_reason": {"type": "string"},
+    "collaboration_preference": {"type": "string"},
+    "current_task": {"type": "string"},
+    "latest_verified_result": {"type": "string"},
+    "next_action": {"type": "string"},
+    "first_target_agent": {"type": "string"},
+    "first_target_agent_known": {"type": "boolean"},
+    "deleted_claim_asserted": {"type": "boolean"},
+    "secret_repeated": {"type": "boolean"}
+  },
+  "required": [
+    "project",
+    "current_goal",
+    "architecture_decision",
+    "architecture_reason",
+    "rejected_option",
+    "rejected_reason",
+    "collaboration_preference",
+    "current_task",
+    "latest_verified_result",
+    "next_action",
+    "first_target_agent",
+    "first_target_agent_known",
+    "deleted_claim_asserted",
+    "secret_repeated"
+  ]
+}

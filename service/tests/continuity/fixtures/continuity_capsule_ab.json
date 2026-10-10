@@ -1,0 +1,156 @@
+{
+  "schema_version": "stage46.continuity-capsule-ab.v1",
+  "scenario_id": "lumenrail-continuity",
+  "namespace": "projects/lumenrail",
+  "synthetic_secret_marker": "api_token=STAGE46_SYNTHETIC_SECRET_7Q4N",
+  "deleted_claim": "LumenRail uploads every build log to every provider automatically.",
+  "questions": [
+    {
+      "id": "facts",
+      "layer": "facts",
+      "text": "What project is this work about, what is it trying to achieve, and what constraints are currently relevant?",
+      "expected_known": true,
+      "expected_terms": [
+        "LumenRail",
+        "local-first provenance ledger",
+        "platform-neutral Core",
+        "Agent private sessions"
+      ],
+      "evidence_keys": ["project_fact", "goal", "constraint", "verification_boundary"]
+    },
+    {
+      "id": "judgment",
+      "layer": "judgment_and_reason",
+      "text": "Which important approach is currently in force, and what reason supports it?",
+      "expected_known": true,
+      "expected_terms": [
+        "append-only evidence journal",
+        "thin source translators",
+        "providers evolve independently"
+      ],
+      "evidence_keys": ["architecture_decision", "constraint"]
+    },
+    {
+      "id": "relationship",
+      "layer": "relationship_and_origin",
+      "text": "How did this work originate, and what collaboration style should shape the response?",
+      "expected_known": true,
+      "expected_terms": [
+        "repeated provider-specific release failures",
+        "durable local ledger",
+        "concise evidence-backed checkpoints",
+        "explicit unknowns"
+      ],
+      "evidence_keys": ["origin", "collaboration"]
+    },
+    {
+      "id": "unknown_boundary",
+      "layer": "unknown_and_boundary",
+      "text": "Which external cloud provider was chosen to be supported first?",
+      "expected_known": false,
+      "expected_terms": [
+        "unknown"
+      ],
+      "evidence_keys": []
+    },
+    {
+      "id": "change",
+      "layer": "revision_and_deletion",
+      "text": "What is the current verification boundary, and is any earlier remote-provider validation claim still current?",
+      "expected_known": true,
+      "expected_terms": [
+        "isolated fixtures",
+        "before any remote write",
+        "remote-provider validation claim superseded"
+      ],
+      "evidence_keys": ["verification_boundary", "checkpoint.verified_status"]
+    },
+    {
+      "id": "action",
+      "layer": "current_action",
+      "text": "What is the current task, what verification status is established, and what is the next practical action?",
+      "expected_known": true,
+      "expected_terms": [
+        "finish the isolated artifact verifier",
+        "parser tests 24 passed",
+        "remote signing remains untested",
+        "test key rotation against a disposable fixture"
+      ],
+      "evidence_keys": [
+        "checkpoint.current_task",
+        "checkpoint.verified_status",
+        "checkpoint.next_action"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "key": "project_fact",
+      "layer": "facts",
+      "type": "fact",
+      "statement": "Project LumenRail is a local-first provenance ledger for release artifacts.",
+      "reason": "The project keeps release evidence inspectable without depending on a hosted control plane."
+    },
+    {
+      "key": "goal",
+      "layer": "facts",
+      "type": "goal",
+      "statement": "LumenRail aims to build a local-first provenance ledger for release artifacts.",
+      "reason": "A durable local record is the current delivery objective."
+    },
+    {
+      "key": "constraint",
+      "layer": "facts",
+      "type": "fact",
+      "statement": "LumenRail keeps its Core platform-neutral and does not write to Agent private sessions.",
+      "reason": "Delivery adapters must not become a second source of truth."
+    },
+    {
+      "key": "architecture_decision",
+      "layer": "judgment_and_reason",
+      "type": "decision",
+      "statement": "LumenRail uses an append-only evidence journal with thin source translators.",
+      "reason": "Release providers evolve independently, so a shared adapter would contaminate the Core."
+    },
+    {
+      "key": "origin",
+      "layer": "relationship_and_origin",
+      "type": "event",
+      "statement": "LumenRail began after repeated provider-specific release failures made a durable local ledger necessary.",
+      "reason": "The project origin is a concrete reliability problem, not an assumed personal history."
+    },
+    {
+      "key": "collaboration",
+      "layer": "relationship_and_origin",
+      "type": "preference",
+      "statement": "The collaboration style favors concise evidence-backed checkpoints, exact test counts, and explicit unknowns.",
+      "reason": "Responses should make verification status and limits easy to inspect."
+    },
+    {
+      "key": "verification_boundary",
+      "layer": "revision_and_deletion",
+      "type": "event",
+      "initial_statement": "LumenRail validates signatures directly against remote providers.",
+      "statement": "LumenRail validates signatures in isolated fixtures before any remote write.",
+      "reason": "The revised boundary supersedes the earlier remote-provider validation state while keeping remote side effects out of verification."
+    },
+    {
+      "key": "deleted_remote_claim",
+      "layer": "revision_and_deletion",
+      "type": "decision",
+      "statement": "LumenRail uploads every build log to every provider automatically.",
+      "reason": "This older delivery claim is removed and is not current."
+    }
+  ],
+  "checkpoint": {
+    "current_task": "Finish the isolated artifact verifier.",
+    "verified_status": "Parser tests 24 passed; remote signing remains untested.",
+    "next_action": "Test key rotation against a disposable fixture before any remote write."
+  },
+  "selection": {
+    "query": "LumenRail release provenance ledger Core translator provider evidence collaboration isolated fixture remote write",
+    "limit": 10,
+    "token_budget": 1400,
+    "ttl_seconds": 3600
+  }
+}
