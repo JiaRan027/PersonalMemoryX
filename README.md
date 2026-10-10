@@ -4,46 +4,53 @@
 
 > **PersonalMemory exists to preserve continuity, not just memory.**
 >
-> 让 AI 长期协作形成的背景，不再困在某一个平台。
+> 让重要的协作背景跟着用户走，而不是留在某一个 AI 平台里。
 
-PersonalMemory 是一个由用户拥有、本地优先的 AI 连续性层。它希望让重要的事实、目标、决定、经验和协作方式，在用户切换 Agent、模型或应用后仍能接续，而不是要求用户一次次从头解释。
+PersonalMemory 是一个**本地优先、由用户掌控的 AI 连续性层**。它帮助用户把重要背景、决定、经验和修正带到不同的 Agent 与模型中，让新的会话不必总从零开始。
 
-## 为什么做 PersonalMemory
+它不是聊天记录仓库，也不承诺记住或召回每一件事。它要解决的是一个更具体的问题：**哪些背景值得延续，依据是什么，以及在需要时如何把合适的部分交给当前 Agent。**
 
-和 AI 的长期协作会逐渐形成共同背景：我们讨论过什么、为什么作出某个决定、后来怎样修正，以及哪些事情仍然没有答案。但这些背景通常散落在不同的对话和平台中。新开一个会话、换一个 Agent，往往就像从未合作过一样。
+## 为什么做它
 
-我们想解决的不是“如何保存更多聊天”，而是：**怎样把真正有助于后续协作的连续性留在用户手中，并在需要时交给合适的 Agent。**
+长期使用 AI 会形成有价值的共同背景：一个决定背后的原因、已经试过但行不通的方案、用户后来作出的修正，以及仍然未知的事情。这些内容往往散落在会话和平台中；换一个工具，就可能再次解释。
 
-PersonalMemory 不是另一个 AI 模型，也不打算把整段聊天永久归档。它在本机管理可追溯、可修正的记忆，再通过已连接的接口向 Agent 提供有限且相关的背景。长期愿景包括个人与 AI 的持续协作，以及更多类型的 AI 应用；当前 Alpha 仍以 Windows 上的开发者工作流为主要验证场景。
+例如，重要的不只是“选择本地部署”，还包括当时为什么这样决定、哪些方案已经试过、后来有没有修正。换一个 Agent 时，这些背景才有机会一起接续，而不是只留下一个孤立结论。
 
-### 我们希望用户最终感受到
+PersonalMemory 希望让这份连续性由用户管理。记忆保留来源并可检查、修正或删除；连接的 Agent 可以通过 MCP 获得与当前任务相关、受预算约束的上下文，而不是每次读取整份记忆库。
 
-- 换一个 Agent 时，不必重新讲完所有重要背景。
-- Agent 得到的是与当前问题相关的上下文，而不是整份记忆库或完整聊天记录。
-- 用户能检查一条记忆的依据、修正过时内容，或删除不想保留的信息。
-- 没有证据的内容仍然可以是未知，不会因为 Agent 的猜测就自动成为事实。
+## 使用时会发生什么
 
-这是产品目标，不是对完美采集或 100% 召回的承诺。更多背景见[产品说明](docs/PRODUCT_OVERVIEW.md)。
+```text
+连接 Agent
+    ↓
+符合条件的信息可能成为记忆候选
+    ↓
+检查依据，修正或删除记忆
+    ↓
+在需要时向另一个 Agent 提供相关背景
+```
 
-## 当前 Alpha 能做什么
+不是每条消息都会成为记忆。接入配置成功也不代表每个 Hook 都已送达；上下文是否被正确召回，还取决于 Agent、问题和集成状态。产品目标与设计取舍见[产品说明](docs/PRODUCT_OVERVIEW.md)。
 
-**版本 0.2.10 · Windows 10/11 x64**
+## 当前 Alpha
+
+**v0.2.10 · Windows 10/11 x64 · Alpha**
 
 | 能力 | 当前状态 |
 | --- | --- |
-| 本地连续性内核 | 在本机管理记忆、来源、修订和删除状态 |
-| Agent 上下文读取 | 通过 MCP 按任务提供有界上下文，不会每次发送全部记忆 |
-| Claude Code | 接入与选择性采集路径已实现，并有真实会话验收 |
-| Codex Desktop / CLI | MCP 与 Hook 接入路径已实现；真实 Hook 到达及自然的跨 Agent 召回仍需用户现场验证 |
-| 数据迁移 | 提供实验性的 `.pmemory` 对象子集导入与导出；不是完整数据库备份 |
-| 云同步、移动端、其他 Agent | 当前版本不支持或尚未完成 |
+| 本地记忆治理 | 在本机管理记忆、来源、修订和删除状态 |
+| Agent 上下文 | 通过 MCP 按任务编译有限上下文，不默认发送全部记忆 |
+| Claude Code | 集成与选择性采集路径已实现，并在真实会话中使用过 |
+| Codex Desktop / CLI | MCP 与 Hook 路径已实现；Hook 到达和自然跨 Agent 召回仍需在用户环境验证 |
+| `.pmemory` 迁移 | 实验性对象子集导入/导出；不是完整数据库备份 |
+| 云同步、移动端、多用户服务 | 当前版本不支持 |
 
-这是 Alpha，不是稳定版。自动采集可能漏掉有价值的信息，也可能需要用户纠正。**接入已配置不等于每个 Hook 都到达；Hook 到达也不等于每轮对话都应产生记忆。**请勿把本软件作为重要资料的唯一备份。
+这是早期 Alpha，不是稳定版。自动采集可能漏掉重要内容，也可能产生需要修正的候选。请不要把 PersonalMemory 当作重要资料的唯一备份。长期愿景包括更多个人 AI 应用；当前版本首先验证 Windows 开发者工作流中的连续性体验。
 
-## 安装与快速开始
+## 安装与开始使用
 
-1. 从 [GitHub Alpha Release](https://github.com/JiaRan027/PersonalMemory/releases/tag/alpha-channel) 下载安装包和同名 `.sha256` 文件。
-2. 在下载文件所在目录打开 PowerShell，校验安装包：
+1. 从 [GitHub Alpha Release](https://github.com/JiaRan027/PersonalMemory/releases/tag/alpha-channel) 下载安装包和对应的 `.sha256` 文件。
+2. 在下载目录打开 PowerShell，校验文件完整性：
 
 ```powershell
 $installer = ".\PersonalMemory_0.2.10_x64-setup.exe"
@@ -53,32 +60,23 @@ if ($actual -ne $expected) { throw "SHA-256 verification failed" }
 "SHA-256 OK: $actual"
 ```
 
-3. 运行安装包并打开 PersonalMemory，在“接入”页面连接需要使用的 Agent。
-4. 按页面说明审核所需的 MCP / Hook 配置，然后新建 Agent 会话。
-5. 像平时一样交流。之后在 PersonalMemory 查看产生的候选或记忆，再在新会话中自然询问相关背景。不要为了“制造记忆”反复发送测试提示。
+3. 安装并打开 PersonalMemory，在“接入”页面连接要使用的 Agent。
+4. 按页面说明审核 MCP / Hook 配置，再新建一个 Agent 会话。
+5. 正常交流；之后可在应用中检查新产生的候选或记忆，并在另一个会话里自然询问相关背景。
 
-**Windows 安装提示：**安装包没有 Authenticode 证书签名，Windows 可能显示“未知发布者”。Release 附带的 SHA-256 只能发现下载损坏或文件不匹配，不能证明发布者身份。应用内更新包使用 Minisign 校验更新文件，但这不是 Windows 发布者身份或 SmartScreen 信誉。本版在线更新安装和失败回滚尚未完成端到端验收，建议从 Release 页面手动下载并安装。
+**Windows 安全提示：**安装包没有 Authenticode 签名，Windows 可能显示“未知发布者”。随包提供的 SHA-256 只用于检查文件是否与发布材料一致，不证明发布者身份。应用内更新包使用 Minisign 验证，但这不是 Windows 代码签名或 SmartScreen 信誉。本版在线更新安装和失败恢复尚未完成端到端验收，建议通过 Release 页面手动更新。
 
-## 数据如何处理
+## 数据与边界
 
-- 记忆默认保存在本机 `%LOCALAPPDATA%\PersonalMemoryData`。本项目当前不提供云端记忆存储、账号同步或跨设备恢复。
-- 本机 Service 通过 loopback 与桌面端和 Agent 接入通信；MCP 为当前任务编译有限上下文，不会把全部记忆库作为每次调用的默认内容。
-- PersonalMemory 不以保存完整聊天记录为目标。记忆保留来源并可在应用中检查、修正、撤销、删除和导出。
-- 将上下文交给云端 Agent 后，相关内容会受到该 Agent / 模型服务商自身的数据处理规则约束。若启用外部模型能力，也应检查相应服务的隐私条款。
-- 本地数据仍需要用户自行备份；Alpha 没有云恢复能力。
+- 记忆默认保存在本机 `%LOCALAPPDATA%\PersonalMemoryData`；当前没有云端记忆存储、账号同步或跨设备恢复。
+- PersonalMemory 不以保存完整聊天记录为目标。记忆有来源信息，并可在应用中检查、修正、撤销或删除。
+- 只有相关上下文会按需交给 Agent。若使用云端 Agent，已发送的内容还受对应模型服务商的数据处理规则约束。
+- 本机数据仍需用户自行备份；Alpha 不提供云恢复。
 
-## 设计原则
+## 参与与构建
 
-- **连续性属于用户。**平台可以变化，用户积累的背景不应被单一平台锁定。
-- **提取可以替换，治理保持稳定。**Agent 可以提出记忆，PersonalMemory 负责来源、冲突、范围、修订和删除治理。
-- **依据比来源品牌重要。**语义权威取决于是谁表达了什么、有什么证据，而不取决于内容来自哪家 Agent。
-- **用户明确纠正优先。**新事实可以替代旧的或推断出来的描述，同时保留必要的修订关系。
-- **不确定性应当保留。**缺少证据时，不把推测包装成确定事实。
-
-## 从源码运行
-
-当前构建目标为 Windows。开发环境、测试命令和安装包构建说明见[构建指南](docs/BUILDING.md)。欢迎通过 [GitHub Issues](https://github.com/JiaRan027/PersonalMemory/issues) 提交可复现的问题或改进建议；请勿上传真实记忆数据库、私人对话、API Token、签名密钥或未经脱敏的日志。
+欢迎提交可复现的问题和改进建议：[GitHub Issues](https://github.com/JiaRan027/PersonalMemory/issues)。贡献者请先阅读[Windows 构建指南](docs/BUILDING.md)。请勿提交真实记忆数据库、私人对话、API Token、签名密钥或未经脱敏的日志。
 
 ## 许可证
 
-PersonalMemory 使用 **AGPL-3.0-or-later**，版权归 **JiaRan027**。请见 [LICENSE](LICENSE)。第三方依赖的许可材料见 [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt)。
+PersonalMemory 使用 **AGPL-3.0-or-later**，版权归 **JiaRan027**。详见 [LICENSE](LICENSE) 和 [第三方许可清单](THIRD_PARTY_NOTICES.txt)。
