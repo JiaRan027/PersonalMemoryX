@@ -50,7 +50,7 @@ finally { Pop-Location }
 
 The local NSIS installer is written under `desktop/src-tauri/target/release/bundle/nsis/`. This command disables creation of updater artifacts, so it does not require the official updater private key. The resulting local installer is unsigned and is for local testing only; it is not an official Alpha package and must not be presented or uploaded as one.
 
-The repository includes a protected GitHub Actions workflow intended for maintainer releases. The current Alpha package was manually built, signed, and verified; the Actions release workflow has not yet been run and accepted end to end. Contributors do not need—and must never request, copy, commit, or place in a local build—the official updater private key. See the README for the Authenticode and updater-signature limitations of the current release.
+The current Alpha package was built and published by the protected GitHub Actions release workflow. The workflow run, package signature, generated update feed, and release assets were verified for this release. This confirms the release pipeline, but does not constitute end-to-end installation, rollback, or Authenticode validation. Contributors do not need—and must never request, copy, commit, or place in a local build—the official updater private key. See the README for the Authenticode and updater-signature limitations of the current release.
 
 ## Safe contribution practices
 

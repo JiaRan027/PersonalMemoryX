@@ -67,7 +67,7 @@ if ($actual -ne $expected) { throw "SHA-256 verification failed" }
 
 逐项操作说明见[功能与使用指南](docs/USAGE.md)。
 
-**Windows 安全提示：**安装包没有 Authenticode 签名，Windows 可能显示“未知发布者”。SHA-256 仅用于检查文件是否与发布材料一致，不证明发布者身份。本版应用内更新包的 Minisign 验签也不是 Windows 代码签名或 SmartScreen 信誉；在线更新安装和失败恢复尚未完成端到端验收，建议通过 Release 页面手动更新。
+**Windows 安全提示：**安装包没有 Authenticode 签名，Windows 可能显示“未知发布者”。SHA-256 仅用于检查文件是否与发布材料一致，不证明发布者身份。本版应用内更新包的 Tauri updater 签名用于验证更新包完整性，不是 Windows 代码签名或 SmartScreen 信誉；在线更新安装和失败恢复尚未完成端到端验收，建议通过 Release 页面手动更新。
 
 ## 数据与边界
 
