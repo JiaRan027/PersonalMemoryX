@@ -2,35 +2,36 @@
 
 [简体中文](README.md) · [English](README_EN.md) · [Feature and Usage Guide](docs/USAGE.md) · [Download the Windows Alpha](https://github.com/JiaRan027/PersonalMemoryX/releases/tag/alpha-channel)
 
-> **PersonalMemory is a user-owned long-term memory system for AI.**
+> **Memory should belong to the user, not to a single AI product.**
 >
-> Let AI accumulate memories from meaningful experiences, connect them, and recall them when relevant.
+> PersonalMemory aims to give AI traceable memories of meaningful experiences, recall them when relevant, and let users keep correcting them.
 
-PersonalMemory is a **local-first, user-controlled long-term memory system for AI**. Its core purpose is to gradually retain, connect, and revise meaningful experiences, knowledge, and changes—and recall them in relevant situations. The user owns these memories; carrying them across agents is one capability that follows from that ownership, not the product's definition.
+PersonalMemory is a **local-first, user-controlled memory system for AI**. It is not meant to archive entire chats. It selectively captures content from authorized sources, preserves where memories came from and how they change, and retrieves them when relevant.
 
-It is not a chat archive, nor does it promise to reproduce a human brain or remember every word. It focuses on **forming understandable, revisable memories from ongoing interactions and experiences, then naturally recalling relevant ones when they matter.**
+The core is how memories form, connect, change, and come back to mind. Claude Code, Codex, and other agents are current input and recall paths. Cross-agent use follows from user-owned memory; it is not the whole product goal.
 
-## Why it exists
-
-People accumulate knowledge, lessons, relationships, plans, and changing understandings through experience. AI interactions can produce similarly meaningful material. Yet most AI memory is bounded by a single session or product, making it difficult for memories to accumulate over time, connect to one another, and change in light of new experience.
-
-What matters may be more than “choose local deployment”: it can include the situation, why that decision was made, which alternatives were tried, what happened next, and whether the experience changed the original view. PersonalMemory aims to preserve meaningful context around experiences, not just isolated conclusions.
-
-The user controls these memories, which retain provenance and can be inspected, corrected, or deleted. Connected agents can receive context relevant to the current situation through MCP, within a budget; agent integrations are access and delivery paths for the memory system.
-
-## What using it looks like
+## How it works
 
 ```text
-Everyday interactions, materials, and meaningful experiences
-      ↓
-Identify useful signals and form or revise memories
-      ↓
-Connect memories to related experiences, time, and context
-      ↓
-Recall them in relevant situations; update from new experience or correction
+An authorized conversation source or user import
+        ↓
+Signals are selected automatically (not every message is captured)
+        ↓
+Candidates or memories retain provenance and revision information
+        ↓
+Users can inspect, correct, review, or delete them
+        ↓
+Agents request bounded, relevant context through MCP when needed
 ```
 
-Not every message becomes a memory. The Alpha uses the Windows desktop app and integrations such as Claude Code and Codex to test capture, governance, and recall; these integrations are current validation surfaces for the memory core, while the product itself is the memory system. A configured integration does not prove that every Hook was delivered, and recall still depends on memory quality, the question, and integration state. See the [product overview](docs/PRODUCT_OVERVIEW.md) for the product rationale and trade-offs.
+**You do not have to enter every memory manually.** Hooks selectively process conversations from supported agents according to the current rules. Ordinary conversation may produce no candidate, and automatic capture can miss useful information. PersonalMemory governs whether a candidate is admitted; users can inspect and correct the result. It does not continuously record every chat, screen, or sound.
+
+## More than a chat archive or an agent plugin
+
+- **Keep provenance:** memories can retain source evidence and revision history, so users can inspect why an item exists.
+- **Allow change:** users can correct or delete memories instead of treating an early inference as permanent truth.
+- **Recall on demand:** MCP compiles bounded context for the current task; it does not send the entire memory store by default.
+- **Keep memory user-owned:** local memories do not depend on one agent account to remain stored. Agent integrations are replaceable ways to use them.
 
 ## Current Alpha
 
@@ -38,24 +39,19 @@ Not every message becomes a memory. The Alpha uses the Windows desktop app and i
 
 | Capability | Current status |
 | --- | --- |
-| Local memory governance | Manages memories, provenance, revisions, and deletion state on this device |
-| Agent context | MCP compiles bounded task context; it does not default to sending the whole memory store |
-| Claude Code | Integration and selective capture paths are implemented and have been used in real sessions |
-| Codex Desktop / CLI | MCP and Hook paths are implemented; Hook delivery and natural recall still need validation in the user's environment |
-| Local source recognition | Read-only scan of supported local agent files; preview candidates before importing |
-| Continuity Capsule | Compiles short-lived task context within a token budget; preview, validate, copy, or save it |
-| Activity and graph | Review processing history and memory relationships; undo is available only for eligible imports |
-| `.pmemory` portability | Experimental import/export for a subset of objects; not a full database backup |
+| Local memory governance | Inspect memories and sources; manage revisions, corrections, and deletion on this device |
+| Automatic capture | Hook paths for Claude Code and Codex are implemented; capture is selective and does not retain full chat transcripts |
+| Agent recall | MCP retrieves task-relevant memories within a token budget; the corresponding agent connection must be configured |
+| Codex Hook verification | Configuration is implemented; receipt of real Hook events must be verified with a new local session. A config entry alone does not prove delivery |
+| `.pmemory` import/export | Experimental subset of objects; not a full database backup or complete migration guarantee |
 | Cloud sync, mobile, multi-user service | Not supported in this release |
 
-See the [Feature and Usage Guide](docs/USAGE.md) for workflows and step-by-step instructions.
-
-This is an early Alpha, not a stable release. Automatic capture can miss useful information or produce candidates that need correction; this release does not yet provide mature, human-like memory and recall across all kinds of experience. Do not use PersonalMemory as the only backup of important information. Windows developer workflows are the first observable setting for validating the memory core, not the boundary of the product vision.
+This is an early Alpha, not a mature system that automatically remembers every experience or recalls everything like a person. Memory recall is not guaranteed to be perfect. Do not use it as the only backup of important information.
 
 ## Install and get started
 
 1. Download the installer and its matching `.sha256` file from the [GitHub Alpha Release](https://github.com/JiaRan027/PersonalMemoryX/releases/tag/alpha-channel).
-2. Open PowerShell in the download directory and check file integrity:
+2. Open PowerShell in the download directory and verify the installer:
 
 ```powershell
 $installer = ".\PersonalMemory_0.2.10_x64-setup.exe"
@@ -65,23 +61,23 @@ if ($actual -ne $expected) { throw "SHA-256 verification failed" }
 "SHA-256 OK: $actual"
 ```
 
-3. Install and open PersonalMemory, then connect the agents you want to use from **Connections**.
-4. Review the MCP / Hook configuration requested by the app and start a new agent session.
-5. Talk normally. Later, inspect any resulting candidates or memories in the app and ask about relevant context naturally in another session.
+3. Install and open PersonalMemory, then configure the agents you want to use from **Connections**.
+4. Review the MCP / Hook configuration requested by the app, then start a new agent session to verify the connection.
+5. Talk normally. Later, inspect resulting candidates and memories in PersonalMemory, then ask about relevant context in a new session.
 
-**Windows security note:** The installer is not Authenticode-signed, so Windows may show an “Unknown publisher” warning. The bundled SHA-256 only checks that the file matches the release material; it does not authenticate the publisher. In-app update packages use Minisign verification, but that is not Windows code signing or SmartScreen reputation. End-to-end online update installation and recovery have not been validated for this release; manual updates from the Release page are recommended.
+See the [Feature and Usage Guide](docs/USAGE.md) for step-by-step instructions.
+
+**Windows security note:** The installer is not Authenticode-signed, so Windows may show an “Unknown publisher” warning. SHA-256 only checks that the file matches the release material; it does not authenticate the publisher. Minisign verification for in-app update packages is not Windows code signing or SmartScreen reputation. End-to-end online update installation and recovery have not been validated for this release; manual updates from the Release page are recommended.
 
 ## Data and boundaries
 
-- Memories are stored locally by default under `%LOCALAPPDATA%\PersonalMemoryData`; this release has no cloud memory storage, account sync, or cross-device recovery.
-- PersonalMemory is not intended to retain complete chat transcripts. Memories include provenance and can be inspected, corrected, reverted, or deleted in the app.
-- Only relevant context is delivered to an agent when needed. If you use a cloud agent, any context sent is also subject to that provider's data-handling policies.
-- Local data still needs to be backed up by the user; this Alpha does not provide cloud recovery.
+- The memory database and PersonalMemory service are stored locally by default under `%LOCALAPPDATA%\PersonalMemoryData`; PM does not provide cloud memory storage or account sync.
+- **Local storage does not mean the connected AI runs locally.** When using a cloud agent, relevant context returned by PersonalMemory becomes part of that provider's conversation processing and is subject to its data policies.
+- If an agent service or account becomes unavailable, the local PersonalMemory data does not disappear automatically. However, PersonalMemory cannot keep that third-party service available or guarantee a no-setup switch to another agent.
+- `.pmemory` currently covers only an experimental subset of objects and is not a full database backup. Back up important data separately.
 
-## Contributing and building
+## Contributing and license
 
-Reproducible issues and improvement suggestions are welcome on [GitHub Issues](https://github.com/JiaRan027/PersonalMemoryX/issues). Contributors should read the [Windows build guide](docs/BUILDING.md) first. Do not commit real memory databases, private conversations, API tokens, signing keys, or unsanitized logs.
+Reproducible issues and suggestions are welcome on [GitHub Issues](https://github.com/JiaRan027/PersonalMemoryX/issues). Build steps are in the [Windows build guide](docs/BUILDING.md). Do not commit real memory databases, private conversations, API tokens, signing keys, or unsanitized logs.
 
-## License
-
-PersonalMemory is licensed under **AGPL-3.0-or-later**, copyright **JiaRan027**. See [LICENSE](LICENSE) and the [third-party license notices](THIRD_PARTY_NOTICES.txt).
+PersonalMemory is licensed under **AGPL-3.0-or-later**, copyright **JiaRan027**. See [LICENSE](LICENSE) and [third-party license notices](THIRD_PARTY_NOTICES.txt).
