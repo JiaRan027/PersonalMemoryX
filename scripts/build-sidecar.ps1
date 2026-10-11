@@ -257,6 +257,10 @@ Write-Host "Sidecar smoke passed: $serviceExe"
 Write-Host "MCP sidecar build passed: $mcpExe"
 Write-Host "Native Hook sidecar fail-open smoke passed: $hookExe"
 
+# The acceptance report contains Chinese fixture text. Windows runners may use
+# a legacy code page (for example cp1252), so make the child Python's stdout
+# encoding deterministic instead of failing after a successful smoke test.
+$env:PYTHONIOENCODING = "utf-8"
 & $Python $codexAcceptancePath `
     --service-executable $serviceExe `
     --hook-executable $hookExe
