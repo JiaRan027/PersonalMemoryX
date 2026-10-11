@@ -14,9 +14,9 @@ use tauri_plugin_updater::{Update, UpdaterExt};
 
 use crate::ManagedService;
 
-const STABLE_FEED: &str = "https://github.com/JiaRan027/PersonalMemory/releases/download/stable-channel/latest-stable.json";
+const STABLE_FEED: &str = "https://github.com/JiaRan027/PersonalMemoryX/releases/download/stable-channel/latest-stable.json";
 const ALPHA_FEED: &str =
-    "https://github.com/JiaRan027/PersonalMemory/releases/download/alpha-channel/latest-alpha.json";
+    "https://github.com/JiaRan027/PersonalMemoryX/releases/download/alpha-channel/latest-alpha.json";
 const UPDATE_JOURNAL: &str = "update-state.json";
 const PROGRESS_EVENT: &str = "personalmemory-update-progress";
 
@@ -427,7 +427,7 @@ mod tests {
     fn channels_resolve_to_fixed_github_https_endpoints() {
         assert_eq!(
             channel_endpoint("alpha").expect("alpha endpoint").as_str(),
-            "https://github.com/JiaRan027/PersonalMemory/releases/download/alpha-channel/latest-alpha.json"
+            "https://github.com/JiaRan027/PersonalMemoryX/releases/download/alpha-channel/latest-alpha.json"
         );
         assert!(channel_endpoint("other").is_err());
     }
@@ -436,7 +436,7 @@ mod tests {
     fn rejects_untrusted_or_http_update_hosts() {
         assert!(is_allowed_transport(
             &Url::parse(
-                "https://github.com/JiaRan027/PersonalMemory/releases/download/v1/update.zip"
+                "https://github.com/JiaRan027/PersonalMemoryX/releases/download/v1/update.zip"
             )
             .expect("test URL")
         ));

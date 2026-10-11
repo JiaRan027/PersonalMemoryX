@@ -54,7 +54,7 @@ finally {
 
 $channelTag = "$Channel-channel"
 $feedName = "latest-$Channel.json"
-$downloadUrl = "https://github.com/JiaRan027/PersonalMemory/releases/download/$channelTag/$($installer.Name)"
+$downloadUrl = "https://github.com/JiaRan027/PersonalMemoryX/releases/download/$channelTag/$($installer.Name)"
 $notes = "PersonalMemory $version ($Channel Alpha). See the repository README for installation, data handling, and verified limitations."
 if ($ReleaseNotes) {
     $notes = $ReleaseNotes.Trim()

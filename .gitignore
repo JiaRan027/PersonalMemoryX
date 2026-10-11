@@ -90,4 +90,8 @@ PROJECT_STATUS.md
 docs/*
 !docs/PRODUCT_OVERVIEW.md
 !docs/BUILDING.md
+!docs/USAGE.md
+!docs/releases/
+docs/releases/*
+!docs/releases/0.2.10-alpha.md
 PERSONAL_MEMORY_ARCHITECTURE.md
